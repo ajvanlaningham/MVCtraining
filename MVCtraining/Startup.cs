@@ -41,9 +41,9 @@ namespace MVCtraining
             }
             //the following things are all middlewares. they are added to the interface in the order in which they occur here. 
             app.UseHttpsRedirection(); //forces the user to use a secure line
-            app.UseStaticFiles(); //adding the styling, javascript, images etc. 
+            app.UseStaticFiles(); //adding the styling, javascript, images etc. to be found in the wwwroot folders
 
-            app.UseRouting();
+            app.UseRouting(); //inspects all and  registers endpoints to be used in the "UseEndpoints" middleware right at the end. 
 
             app.UseAuthorization();
 
@@ -51,7 +51,7 @@ namespace MVCtraining
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");//this is the default pattern for the router. in this case, "id" is optional and the default controller and action are home and index, respectively. 
             });
         }
     }
