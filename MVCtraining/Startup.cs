@@ -23,15 +23,15 @@ namespace MVCtraining
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); //this came with the initial creation of the framework. 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline. this is where one registers new services for the rest of the program to be able to use those services 
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) 
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment())// checking to see if the application  is "in development" before executing any actual "work"
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); // this is "middleware" which will interrupt access to the functionality
             }
             else
             {
@@ -39,8 +39,9 @@ namespace MVCtraining
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            //the following things are all middlewares. they are added to the interface in the order in which they occur here. 
+            app.UseHttpsRedirection(); //forces the user to use a secure line
+            app.UseStaticFiles(); //adding the styling, javascript, images etc. 
 
             app.UseRouting();
 
